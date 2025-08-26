@@ -9,13 +9,16 @@ class BillingController extends Controller
 {
     public function index()
     {
-        $billings = Billing::with('reservation.customer', 'reservation.room')->latest()->get();
+        $billings = Billing::with(['reservation.customer', 'reservation.room'])
+        ->latest()
+        ->paginate(10);
+
         return view('billings.index', compact('billings'));
     }
 
     public function show(Billing $billing)
     {
-        $billing->load('reservation.customer', 'reservation.room', 'reservation.services.service');
+        $billing->load(['reservation.customer', 'reservation.room', 'reservation.services.service']);
         return view('billings.show', compact('billing'));
     }
 
