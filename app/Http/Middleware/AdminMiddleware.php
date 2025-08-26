@@ -14,6 +14,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/')->with('error', 'Access denied. Administrator privileges required.');
+        return redirect('/home')->with('error', 'Access denied. Administrator privileges required.');
     }
 }

@@ -94,6 +94,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- In the navbar section, update the menu based on user role -->
                     <ul class="navbar-nav me-auto">
                         @auth
                             <li class="nav-item">
@@ -105,6 +106,9 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('customers.index') }}">Customers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('billings.index') }}">Billing</a>
                                 </li>
                             @endif
                             @if (auth()->user()->role === 'admin')
@@ -135,7 +139,8 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
                                             @csrf
                                         </form>
                                     </li>

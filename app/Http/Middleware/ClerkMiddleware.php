@@ -14,6 +14,6 @@ class ClerkMiddleware
             return $next($request);
         }
 
-        return redirect('/')->with('error', 'Access denied. Reservation clerk privileges required.');
+        return redirect('/home')->with('error', 'Access denied. Reservation clerk privileges required.');
     }
 }

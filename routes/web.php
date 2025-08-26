@@ -8,6 +8,8 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ReportController;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\ClerkMiddleware;
 
 // Authentication Routes
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -23,8 +25,8 @@ Route::post('/reservations/public', [ReservationController::class, 'storePublic'
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-    // Reservation Clerk Routes
-    Route::middleware(['clerk'])->group(function () {
+    // Reservation Clerk Routes (accessible to both clerks and admins)
+    Route::middleware([ClerkMiddleware::class])->group(function () {
         Route::resource('customers', CustomerController::class);
         Route::resource('reservations', ReservationController::class)->except(['storePublic']);
         Route::post('reservations/{reservation}/checkin', [ReservationController::class, 'checkIn'])->name('reservations.checkin');
@@ -36,8 +38,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('billings/{billing}/process-payment', [BillingController::class, 'processPayment'])->name('billings.processPayment');
     });
 
-    // Admin Routes
-    Route::middleware(['admin'])->group(function () {
+    // Admin Only Routes
+    Route::middleware([AdminMiddleware::class])->group(function () {
         Route::resource('rooms', RoomController::class);
         Route::get('reports/occupancy', [ReportController::class, 'occupancy'])->name('reports.occupancy');
         Route::get('reports/financial', [ReportController::class, 'financial'])->name('reports.financial');
