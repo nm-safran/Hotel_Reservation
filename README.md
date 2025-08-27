@@ -41,14 +41,15 @@ php artisan key:generate
 php artisan migrate:fresh --seed
 
 
-# 🎨 UI Scaffolding
+## 🎨 UI Scaffolding
 
 
 composer require laravel/ui
 php artisan ui bootstrap
 npm install && npm run dev
 
-#▶️ Run the Project
+
+## ▶️ Run the Project
 
 ## Start the development server:
 
@@ -60,7 +61,8 @@ npm run dev
 
 Now visit: http://localhost:8000
 
-# 👤 Default Users
+
+## 👤 Default Users
 
 After seeding, the system comes with two default users:
 
@@ -70,6 +72,6 @@ Admin	admin@hotel.com	      password
 Clerk	clerk@hotel.com	      password
 
 
-# 🤝 Contributing
+## 🤝 Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
 ```
