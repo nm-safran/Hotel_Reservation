@@ -19,10 +19,11 @@ class ReportController extends Controller
     public function financial()
     {
         $revenueData = Billing::where('payment_status', 'paid')
-            ->selectRaw('DATE(created_at) as date, SUM(total_amount) as revenue')
-            ->groupBy('date')
-            ->orderBy('date', 'desc')
-            ->get();
+        ->selectRaw('DATE(created_at) as date, SUM(total_amount) as revenue')
+        ->groupBy('date')
+        ->orderBy('date', 'desc')
+        ->take(30) // Show last 30 days
+        ->get();
 
         return view('reports.financial', compact('revenueData'));
     }
