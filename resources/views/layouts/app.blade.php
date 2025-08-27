@@ -115,8 +115,24 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('rooms.index') }}">Rooms</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('reports.occupancy') }}">Reports</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="reportsDropdown" role="button"
+                                        data-bs-toggle="dropdown">
+                                        Reports
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('reports.occupancy') }}">Occupancy
+                                                Report</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('reports.financial') }}">Financial
+                                                Report</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('reports.daily') }}">Daily Report</a>
+                                        </li>
+                                    </ul>
                                 </li>
                             @endif
                         @endauth
@@ -167,8 +183,17 @@
                                 @if (auth()->user()->role === 'admin')
                                     <a href="{{ route('rooms.index') }}"
                                         class="list-group-item list-group-item-action">Room Management</a>
-                                    <a href="{{ route('reports.occupancy') }}"
-                                        class="list-group-item list-group-item-action">Reports</a>
+                                    <div class="list-group-item">
+                                        <strong>Reports</strong>
+                                        <div class="list-group list-group-flush ms-2">
+                                            <a href="{{ route('reports.occupancy') }}"
+                                                class="list-group-item list-group-item-action">Occupancy Report</a>
+                                            <a href="{{ route('reports.financial') }}"
+                                                class="list-group-item list-group-item-action">Financial Report</a>
+                                            <a href="{{ route('reports.daily') }}"
+                                                class="list-group-item list-group-item-action">Daily Report</a>
+                                        </div>
+                                    </div>
                                 @endif
                             </div>
                         </div>
