@@ -10,17 +10,18 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
         <style>
             :root {
-                --primary: #6366f1;
-                --primary-dark: #4f46e5;
-                --accent: #f472b6;
-                --bg: #f8fafc;
+                --primary: #22336b;
+                --primary-dark: #162044;
+                --accent: #2dd4bf;
+                --accent-dark: #0891b2;
+                --bg: #f5f7fa;
                 --surface: #fff;
-                --text: #22223b;
-                --muted: #9ca3af;
+                --text: #23272f;
+                --muted: #6b7280;
                 --success: #22c55e;
                 --danger: #ef4444;
-                --warning: #facc15;
-                --info: #38bdf8;
+                --warning: #f59e42;
+                --info: #0ea5e9;
             }
 
             body {
@@ -31,21 +32,84 @@
             }
 
             .navbar {
-                background: linear-gradient(90deg, var(--primary), var(--accent));
-                box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+                background: linear-gradient(90deg, var(--primary-dark) 60%, var(--primary) 100%);
+                box-shadow: 0 2px 8px rgba(34, 51, 107, 0.08);
+                padding-top: 0.25rem !important;
+                padding-bottom: 0.25rem !important;
             }
 
-            .navbar-brand,
+            .navbar-brand {
+                display: flex;
+                align-items: center;
+                font-weight: 700;
+                font-size: 1.15rem;
+                letter-spacing: 0.04em;
+                padding: 0;
+                margin-right: 1.5rem;
+            }
+
+            .navbar-brand .brand-logo {
+                height: 32px;
+                margin-right: 8px;
+                border-radius: 0.4rem;
+                box-shadow: 0 2px 8px rgba(34, 51, 107, 0.10);
+                background: #fff;
+                padding: 1px 4px;
+            }
+
+            .navbar-brand .brand-title {
+                color: var(--accent) !important;
+                font-family: 'Inter', Arial, sans-serif;
+                font-weight: 900;
+                letter-spacing: 0.08em;
+                text-shadow: 0 2px 8px rgba(34, 51, 107, 0.10);
+                font-size: 1.15rem;
+                line-height: 1;
+            }
+
+            .navbar-nav {
+                align-items: center;
+            }
+
             .navbar-nav .nav-link {
                 color: #fff !important;
                 font-weight: 600;
                 letter-spacing: 0.03em;
+                margin: 0 0.25rem;
+                border-radius: 2rem;
+                padding: 0.35rem 1rem;
+                background: rgba(45, 212, 191, 0.07);
+                transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+                box-shadow: 0 2px 8px rgba(34, 51, 107, 0.04);
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.4em;
             }
 
             .navbar-nav .nav-link.active,
             .navbar-nav .nav-link:hover {
-                color: var(--accent) !important;
-                text-shadow: 0 1px 4px rgba(244, 114, 182, 0.15);
+                background: linear-gradient(90deg, var(--accent-dark) 60%, var(--accent) 100%);
+                color: #fff !important;
+                box-shadow: 0 4px 16px rgba(45, 212, 191, 0.15);
+                text-shadow: 0 1px 4px rgba(45, 212, 191, 0.15);
+            }
+
+            .navbar-nav .dropdown-menu {
+                border-radius: 1rem;
+                box-shadow: 0 4px 24px rgba(34, 51, 107, 0.08);
+            }
+
+            .navbar-nav .dropdown-item {
+                border-radius: 1rem;
+                margin: 0.2rem 0;
+                font-weight: 500;
+                transition: background 0.2s, color 0.2s;
+            }
+
+            .navbar-nav .dropdown-item:hover {
+                background: linear-gradient(90deg, var(--primary), var(--accent));
+                color: #fff;
             }
 
             .btn-primary {
@@ -53,22 +117,31 @@
                 border: none;
                 font-weight: 600;
                 border-radius: 1.5rem;
-                box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+                box-shadow: 0 2px 8px rgba(34, 51, 107, 0.08);
                 transition: background 0.2s, box-shadow 0.2s;
             }
 
             .btn-primary:hover {
-                background: linear-gradient(90deg, var(--primary-dark), var(--accent));
-                box-shadow: 0 4px 16px rgba(99, 102, 241, 0.16);
+                background: linear-gradient(90deg, var(--primary-dark), var(--accent-dark));
+                box-shadow: 0 4px 16px rgba(34, 51, 107, 0.16);
             }
 
             .btn-secondary {
                 border-radius: 1.5rem;
+                background: #e5e7eb;
+                color: var(--primary);
+                border: none;
+                font-weight: 600;
+            }
+
+            .btn-secondary:hover {
+                background: #cbd5e1;
+                color: var(--primary-dark);
             }
 
             .card {
                 border-radius: 1.25rem;
-                box-shadow: 0 4px 24px rgba(99, 102, 241, 0.06);
+                box-shadow: 0 4px 24px rgba(34, 51, 107, 0.06);
                 border: none;
             }
 
@@ -84,7 +157,7 @@
                 background: linear-gradient(180deg, var(--primary-dark), var(--primary));
                 color: #fff;
                 min-height: calc(100vh - 56px);
-                box-shadow: 2px 0 8px rgba(99, 102, 241, 0.08);
+                box-shadow: 2px 0 8px rgba(34, 51, 107, 0.08);
             }
 
             .sidebar .list-group-item {
@@ -99,7 +172,7 @@
 
             .sidebar .list-group-item:hover,
             .sidebar .list-group-item.active {
-                background: rgba(244, 114, 182, 0.15);
+                background: rgba(45, 212, 191, 0.15);
                 color: var(--accent);
             }
 
@@ -111,7 +184,7 @@
             .table {
                 border-radius: 1rem;
                 overflow: hidden;
-                box-shadow: 0 2px 8px rgba(99, 102, 241, 0.04);
+                box-shadow: 0 2px 8px rgba(34, 51, 107, 0.04);
             }
 
             .alert-success {
@@ -136,14 +209,14 @@
             }
 
             .hero-section {
-                background: linear-gradient(rgba(99, 102, 241, 0.7), rgba(244, 114, 182, 0.7)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+                background: linear-gradient(rgba(34, 51, 107, 0.7), rgba(45, 212, 191, 0.7)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
                 background-size: cover;
                 background-position: center;
                 color: #fff;
                 padding: 120px 0 80px 0;
                 text-align: center;
                 border-radius: 0 0 2rem 2rem;
-                box-shadow: 0 8px 32px rgba(99, 102, 241, 0.12);
+                box-shadow: 0 8px 32px rgba(34, 51, 107, 0.12);
             }
 
             .form-control,
@@ -156,8 +229,8 @@
 
             .form-control:focus,
             .form-select:focus {
-                border-color: var(--primary);
-                box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+                border-color: var(--accent);
+                box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.15);
             }
 
             .badge {
@@ -168,7 +241,7 @@
 
             .dropdown-menu {
                 border-radius: 1rem;
-                box-shadow: 0 4px 24px rgba(99, 102, 241, 0.08);
+                box-shadow: 0 4px 24px rgba(34, 51, 107, 0.08);
             }
 
             /* Smooth transitions for interactive elements */
@@ -179,77 +252,116 @@
             .form-select {
                 transition: all 0.2s;
             }
+
+            @media (max-width: 991.98px) {
+                .navbar-brand {
+                    font-size: 1rem;
+                }
+
+                .navbar-brand .brand-title {
+                    font-size: 1rem;
+                }
+
+                .navbar-nav .nav-link {
+                    font-size: 0.98rem;
+                    padding: 0.4rem 0.9rem;
+                }
+            }
         </style>
     </head>
 
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">Hotel Reservation System</a>
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{ asset('images/hotel-logo.png') }}" alt="Hotel Logo" class="brand-logo">
+                    <span class="brand-title">Hotel Reservation System</span>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <!-- In the navbar section, update the menu based on user role -->
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
+                                <a class="nav-link{{ request()->routeIs('home') ? ' active' : '' }}"
+                                    href="{{ route('home') }}">
+                                    <i class="bi bi-house-door"></i> Dashboard
+                                </a>
                             </li>
                             @if (auth()->user()->role === 'clerk' || auth()->user()->role === 'admin')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('reservations.index') }}">Reservations</a>
+                                    <a class="nav-link{{ request()->routeIs('reservations.*') ? ' active' : '' }}"
+                                        href="{{ route('reservations.index') }}">
+                                        <i class="bi bi-calendar2-check"></i> Reservations
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('customers.index') }}">Customers</a>
+                                    <a class="nav-link{{ request()->routeIs('customers.*') ? ' active' : '' }}"
+                                        href="{{ route('customers.index') }}">
+                                        <i class="bi bi-people"></i> Customers
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('billings.index') }}">Billing</a>
+                                    <a class="nav-link{{ request()->routeIs('billings.*') ? ' active' : '' }}"
+                                        href="{{ route('billings.index') }}">
+                                        <i class="bi bi-cash-coin"></i> Billing
+                                    </a>
                                 </li>
                             @endif
                             @if (auth()->user()->role === 'admin')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('rooms.index') }}">Rooms</a>
+                                    <a class="nav-link{{ request()->routeIs('rooms.*') ? ' active' : '' }}"
+                                        href="{{ route('rooms.index') }}">
+                                        <i class="bi bi-door-open"></i> Rooms
+                                    </a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="reportsDropdown" role="button"
-                                        data-bs-toggle="dropdown">
-                                        Reports
+                                    <a class="nav-link dropdown-toggle{{ request()->routeIs('reports.*') ? ' active' : '' }}"
+                                        href="#" id="reportsDropdown" role="button" data-bs-toggle="dropdown">
+                                        <i class="bi bi-bar-chart-line"></i> Reports
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('reports.occupancy') }}">Occupancy
-                                                Report</a>
+                                            <a class="dropdown-item" href="{{ route('reports.occupancy') }}">
+                                                <i class="bi bi-pie-chart"></i> Occupancy Report
+                                            </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('reports.financial') }}">Financial
-                                                Report</a>
+                                            <a class="dropdown-item" href="{{ route('reports.financial') }}">
+                                                <i class="bi bi-currency-dollar"></i> Financial Report
+                                            </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('reports.daily') }}">Daily Report</a>
+                                            <a class="dropdown-item" href="{{ route('reports.daily') }}">
+                                                <i class="bi bi-calendar-event"></i> Daily Report
+                                            </a>
                                         </li>
                                     </ul>
                                 </li>
                             @endif
                         @endauth
                     </ul>
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav ms-auto">
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                                <a class="nav-link{{ request()->routeIs('login') ? ' active' : '' }}"
+                                    href="{{ route('login') }}">
+                                    <i class="bi bi-box-arrow-in-right"></i> Login
+                                </a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown">
-                                    {{ Auth::user()->name }}
+                                    <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            <i class="bi bi-box-arrow-right"></i> Logout
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                             class="d-none">
